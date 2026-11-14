@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccxt-resilience"
+version = "0.1.1"
+description = "Endurece un cliente ccxt legítimo contra falsos positivos de WAF (Cloudflare) y errores transitorios: retry selectivo con backoff + jitter y hardening de cabeceras."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Juan Carlos Isaza", email = "isazajuancarlos@gmail.com" }]
+keywords = ["ccxt", "okx", "cloudflare", "retry", "backoff", "resilience", "waf", "exchange"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Software Development :: Libraries",
+]
+# Sin dependencias obligatorias: ccxt es BLANDA (la detección por mensaje
+# funciona sin él; con él, además clasifica por tipo de excepción).
+dependencies = []
+
+[project.optional-dependencies]
+ccxt = ["ccxt>=4"]
+test = ["pytest>=7", "ccxt>=4"]
+
+[project.urls]
+Homepage = "https://github.com/isazajuancarlos/ccxt-resilience"
+Issues = "https://github.com/isazajuancarlos/ccxt-resilience/issues"
+Blog = "https://xiliux.com/blog/por-que-tu-bot-recibe-403-de-cloudflare-ccxt"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
